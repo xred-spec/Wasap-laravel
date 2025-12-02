@@ -19,7 +19,19 @@ class UsuariosController extends Controller
         if ($usuario) {
             return response()->json($usuario, 200);
         } else {
-            return response()->json(['error' => 'Credenciales incorrectas'], 401);
+            return response()->json(['error' => 'Datos incorrectos'], 401);
         }
     }
+
+    public function getUsuario($id) {
+        $usuario = Usuarios::find($id);
+
+        if(!$usuario) {
+            return response() -> json(404);
+        }
+
+        return response() -> json(
+            $usuario, 200);
+    }
 }
+
